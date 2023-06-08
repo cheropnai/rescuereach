@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "210881557931",
+    "project_id": "resreach",
+    "storage_bucket": "resreach.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210881557931:android:e4d253a42818b7d1a68eee",
+        "android_client_info": {
+          "package_name": "com.cheropproj.rescuereach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210881557931-8lrprkvdu0gpia4ld8hcp246g6gbjb3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgiiCKP5Rx-rOxbiK5gqhezApFtI9AUkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210881557931-8lrprkvdu0gpia4ld8hcp246g6gbjb3v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
