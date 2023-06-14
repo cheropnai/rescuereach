@@ -23,7 +23,7 @@ class loginView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // const SizedBox(height: 50),
+              const SizedBox(height: 25),
               //logo
               const Icon(
                 Icons.local_car_wash,
@@ -117,6 +117,7 @@ class loginView extends StatelessWidget {
               ),
 
               const SizedBox(height: 50),
+              
 
               // not a member register now
               Row(
