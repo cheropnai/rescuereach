@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
       } else if (state is AuthStateNeedsVerification) {
         return const WelcomeView();
       } else if (state is AuthStateLoggedOut) {
-        return const logInScreen();
+        return loginView();
       } else if (state is AuthStateRegistering) {
         return const RegisterView();
       } else if (state is AuthStateForgotPassword) {
