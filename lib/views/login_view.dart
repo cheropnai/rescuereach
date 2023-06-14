@@ -103,13 +103,13 @@ class loginView extends StatelessWidget {
               ),
 
               const SizedBox(height: 50),
-              Row(
+             const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // google button
                   SquareTile(imagePath: 'lib/images/google-logo-9824.png'),
 
-                  const SizedBox(width: 25),
+                   SizedBox(width: 25),
 
                   //apple button
                   SquareTile(imagePath: 'lib/images/png-apple-logo-9723.png'),
@@ -120,15 +120,15 @@ class loginView extends StatelessWidget {
               
 
               // not a member register now
-              Row(
+            const  Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                   Text(
                     'Not a member?',
                     style: TextStyle(
                         color: Colors.blue, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(width: 4),
+                   SizedBox(width: 4),
                   Text(
                     'Register now',
                     style: TextStyle(
