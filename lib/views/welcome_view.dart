@@ -19,7 +19,7 @@ class _WelcomeViewState extends State<WelcomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Your Notes'),
+          title: const Text('Welcome to RescueReach'),
           actions: [
             PopupMenuButton<MenuAction>(onSelected: (value) async {
               switch (value) {

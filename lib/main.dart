@@ -16,10 +16,11 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue.shade50),
-      ),
+      // theme: ThemeData(
+      //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue.shade50),
+      // ),
       home: BlocProvider<AuthBloc>(
         create: (context) => AuthBloc(FirebaseAuthProvider()),
         child: const HomePage(),
@@ -52,7 +53,7 @@ class HomePage extends StatelessWidget {
       } else if (state is AuthStateNeedsVerification) {
         return const WelcomeView();
       } else if (state is AuthStateLoggedOut) {
-        return loginView();
+        return const LoginView();
       } else if (state is AuthStateRegistering) {
         return const RegisterView();
       } else if (state is AuthStateForgotPassword) {
