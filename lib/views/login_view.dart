@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rescuereach/components/my_textfield.dart';
 import 'package:rescuereach/components/my_button.dart';
 import 'package:rescuereach/components/square_tile.dart';
+import 'package:rescuereach/views/register_view.dart';
 
 class loginView extends StatelessWidget {
   loginView({super.key});
@@ -120,7 +121,7 @@ class loginView extends StatelessWidget {
               
 
               // not a member register now
-            const  Row(
+            Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                    Text(
@@ -129,10 +130,20 @@ class loginView extends StatelessWidget {
                         color: Colors.blue, fontWeight: FontWeight.bold),
                   ),
                    SizedBox(width: 4),
-                  Text(
-                    'Register now',
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterView(key: UniqueKey())),
+                      );
+                    },
+                    child: Text(
+                      'Register now',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ],
               )

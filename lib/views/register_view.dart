@@ -18,12 +18,22 @@ class _RegisterViewState extends State<RegisterView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  final phoneController = TextEditingController();
+  final phoneControllers = <TextEditingController>[]; // Store the controllers for each contact
 
   void _addContact() {
     setState(() {
       _contacts.add('');
+      phoneControllers.add(TextEditingController()); // Add a new controller for each contact
     });
+  }
+
+  @override
+  void dispose() {
+    // Dispose the controllers to avoid memory leaks
+    for (var controller in phoneControllers) {
+      controller.dispose();
+    }
+    super.dispose();
   }
 
   @override
@@ -39,13 +49,11 @@ class _RegisterViewState extends State<RegisterView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 25),
-                  // logo
                   const Icon(
                     Icons.local_car_wash,
                     size: 100,
                   ),
                   SizedBox(height: 25),
-                  // register
                   const Text(
                     'Register',
                     style: TextStyle(
@@ -54,46 +62,32 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
                   SizedBox(height: 25),
-                  // First name and Last name
                   MyTextField(
-                      controller: firstNameController,
-                      hintText: 'First Name',
-                      obscureText: false,
+                    controller: firstNameController,
+                    hintText: 'First Name',
+                    obscureText: false,
                   ),
                   MyTextField(
                     controller: lastNameController,
                     hintText: 'Last Name',
                     obscureText: false,
                   ),
-                  // Email
                   MyTextField(
                     controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
                   ),
-                  // TextFormField(
-                  //   decoration: InputDecoration(labelText: 'Email'),
-                  //   validator: (value) {
-                  //     if (value != null && !value.contains('@')) {
-                  //       return 'Please enter a valid email address';
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
                   MyTextField(
                     controller: passwordController,
                     hintText: 'Password',
                     obscureText: true,
                   ),
-                  // ..._contacts.map((contact) {
-                  //   return TextFormField(
-                  //     decoration: InputDecoration(labelText: 'Contact'),
-                  //   );
-                  // }).toList(),
-                  ..._contacts.map((contact) {
+                  ..._contacts.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final controller = phoneControllers[index];
                     return MyTextField(
-                      controller: phoneController,
-                      hintText: 'Contact',
+                      controller: controller,
+                      hintText: 'Contact ${index + 1}',
                       obscureText: false,
                     );
                   }).toList(),
