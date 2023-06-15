@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:rescuereach/components/my_textfield.dart';
 import 'package:rescuereach/components/my_button.dart';
 import 'package:rescuereach/components/square_tile.dart';
+import 'package:rescuereach/views/register_view.dart';
 
-class loginView extends StatelessWidget {
-  loginView({super.key});
+class LoginView extends StatelessWidget {
+  LoginView({super.key});
 
   //Text editing controllers.
   final usernameController = TextEditingController();
@@ -22,7 +23,7 @@ class loginView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 25),
                 //logo
                 const Icon(
                   Icons.local_car_wash,
@@ -102,7 +103,7 @@ class loginView extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 50),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // google button
@@ -121,18 +122,28 @@ class loginView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                   'Not a member?',
                   style: TextStyle(
                     color: Colors.blue, fontWeight: FontWeight.bold
                   ),
                 ),
-                    const SizedBox(width: 4),
-                    Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
+                    SizedBox(width: 4),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RegisterView(key: UniqueKey())),
+                        );
+                      },
+                      child: Text(
+                        'Register now',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                    ),
                   ],
                 )
               ],
