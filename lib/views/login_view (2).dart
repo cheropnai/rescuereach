@@ -132,7 +132,7 @@ class _LoginViewState extends State<LoginView> {
       },
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 191, 166, 233),
-        appBar: AppBar(title: const Text('Login')),
+        //appBar: AppBar(title: const Text('Login')),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Center(
