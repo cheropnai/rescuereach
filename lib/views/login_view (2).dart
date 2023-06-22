@@ -179,7 +179,8 @@ class _LoginViewState extends State<LoginView> {
                             // icon: Icon(Icons.email),
                             // labelText: 'Email',
 
-                            // helperText: 'A valid email e.g. joe.doe@gmail.com',
+                            helperText:
+                                'A valid email e.g. jane.dickens@gmail.com',
                           ),
                           obscureText: false,
                           validator: (_) => _state.email.displayError?.text(),
@@ -201,8 +202,8 @@ class _LoginViewState extends State<LoginView> {
                             filled: true,
                             hintText: 'password',
                             hintStyle: TextStyle(color: Colors.grey),
-                            // helperText:
-                            //     'At least 8 characters including one letter and number',
+                            helperText:
+                                'At least 8 characters including one letter and number',
                             helperMaxLines: 2,
                             errorMaxLines: 2,
                           ),
