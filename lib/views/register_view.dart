@@ -78,6 +78,13 @@ class _RegisterViewState extends State<RegisterView> {
     }
   }
 
+  Future<void> _dummy() async {
+    const successSnackBar = SnackBar(
+      content: Text('successful confirmation! 🎉'),
+    );
+    return;
+  }
+
   Future<void> _submitForm() async {
     final email = _emailController.text;
     final password = _passwordController.text;
@@ -134,111 +141,145 @@ class _RegisterViewState extends State<RegisterView> {
         backgroundColor: const Color.fromARGB(255, 191, 166, 233),
         //appBar: AppBar(title: const Text('Sign Up')),
         body: SafeArea(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 25),
-                //logo
-                const Icon(
-                  Icons.local_car_wash,
-                  size: 100,
-                ),
-
-                const Text(
-                  'Register',
-                  style: TextStyle(
-                    color: Colors.purple,
-                    fontSize: 18,
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 25),
+                  //logo
+                  const Icon(
+                    Icons.local_car_wash,
+                    size: 100,
                   ),
-                ),
-                const SizedBox(height: 25),
-                Form(
-                    key: _key,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                          child: TextFormField(
-                            controller: _emailController,
-                            decoration: const InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey)),
-                              fillColor: Colors.white,
-                              filled: true,
-                              hintText: 'Enter your email',
-                              hintStyle: TextStyle(color: Colors.grey),
-                              // labelText: 'Email',
-                              helperText:
-                                  'A valid email e.g. jane.dickens@gmail.com',
+
+                  const Text(
+                    'Register',
+                    style: TextStyle(
+                      color: Colors.purple,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  Form(
+                      key: _key,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 25.0),
+                            child: TextFormField(
+                              controller: _emailController,
+                              decoration: const InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey)),
+                                fillColor: Colors.white,
+                                filled: true,
+                                hintText: 'Enter your email',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                // labelText: 'Email',
+                                helperText:
+                                    'A valid email e.g. jane.dickens@gmail.com',
+                              ),
+                              validator: (_) =>
+                                  _state.email.displayError?.text(),
+                              keyboardType: TextInputType.emailAddress,
+                              textInputAction: TextInputAction.next,
                             ),
-                            validator: (_) => _state.email.displayError?.text(),
-                            keyboardType: TextInputType.emailAddress,
-                            textInputAction: TextInputAction.next,
                           ),
-                        ),
-                        const SizedBox(height: 25),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                          child: TextFormField(
-                            controller: _passwordController,
-                            decoration: const InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey)),
-                              fillColor: Colors.white,
-                              filled: true,
-                              hintText: 'password',
-                              hintStyle: TextStyle(color: Colors.grey),
-                              helperText:
-                                  'At least 8 characters including one letter and number',
-                              helperMaxLines: 2,
-                              labelText: 'Password',
-                              errorMaxLines: 2,
+                          const SizedBox(height: 25),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 25.0),
+                            child: TextFormField(
+                              controller: _passwordController,
+                              decoration: const InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey)),
+                                fillColor: Colors.white,
+                                filled: true,
+                                hintText: 'password',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                helperText:
+                                    'At least 8 characters including one letter and number',
+                                helperMaxLines: 2,
+                                // labelText: 'Password',
+                                errorMaxLines: 2,
+                              ),
+                              validator: (_) =>
+                                  _state.password.displayError?.text(),
+                              obscureText: true,
+                              textInputAction: TextInputAction.done,
                             ),
-                            validator: (_) =>
-                                _state.password.displayError?.text(),
-                            obscureText: true,
-                            textInputAction: TextInputAction.done,
                           ),
-                        ),
-                        const SizedBox(height: 40),
-                        if (_state.status.isInProgress)
-                          const CircularProgressIndicator()
-                        else
-                          MyButtonRegister(
-                            onTap: _onSubmit,
+                          const SizedBox(height: 25),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 25.0),
+                            child: TextFormField(
+                              controller: _passwordController,
+                              decoration: const InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey)),
+                                fillColor: Colors.white,
+                                filled: true,
+                                hintText: 'confirm password',
+                                hintStyle: TextStyle(color: Colors.grey),
+                                helperText: 'Passwords must match',
+                                helperMaxLines: 2,
+                                // labelText: 'Password',
+                                errorMaxLines: 2,
+                              ),
+                              validator: (_) =>
+                                  _state.password.displayError?.text(),
+                              obscureText: true,
+                              textInputAction: TextInputAction.done,
+                            ),
                           ),
-                        // ElevatedButton.icon(
-                        //   key: const Key('loginForm_googleLogin_raisedButton'),
-                        //   label: const Text(
-                        //     'Continue with Google',
-                        //     style: TextStyle(color: Colors.white),
-                        //   ),
-                        //   style: ElevatedButton.styleFrom(
-                        //     shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(30),
-                        //     ),
-                        //     // backgroundColor: theme.colorScheme.secondary,
-                        //   ),
-                        //   icon: const Icon(Icons.gps_off_outlined,
-                        //       color: Colors.white),
-                        //   onPressed: () => context
-                        //       .read<AuthBloc>()
-                        //       .add(const AuthEventGoogleLogin()),
-                        // ),
-                      ],
-                    )),
-                TextButton(
-                  onPressed: () async {
-                    context.read<AuthBloc>().add(const AuthEventLogOut());
-                  },
-                  child: const Text('back to login'),
-                ),
-              ],
+                          const SizedBox(height: 40),
+                          if (_state.status.isInProgress)
+                            const CircularProgressIndicator()
+                          else
+                            MyButtonRegister(
+                              onTap: _dummy,
+                            ),
+                          // ElevatedButton.icon(
+                          //   key: const Key('loginForm_googleLogin_raisedButton'),
+                          //   label: const Text(
+                          //     'Continue with Google',
+                          //     style: TextStyle(color: Colors.white),
+                          //   ),
+                          //   style: ElevatedButton.styleFrom(
+                          //     shape: RoundedRectangleBorder(
+                          //       borderRadius: BorderRadius.circular(30),
+                          //     ),
+                          //     // backgroundColor: theme.colorScheme.secondary,
+                          //   ),
+                          //   icon: const Icon(Icons.gps_off_outlined,
+                          //       color: Colors.white),
+                          //   onPressed: () => context
+                          //       .read<AuthBloc>()
+                          //       .add(const AuthEventGoogleLogin()),
+                          // ),
+                        ],
+                      )),
+                  TextButton(
+                    onPressed: () async {
+                      context.read<AuthBloc>().add(const AuthEventLogOut());
+                    },
+                    child: const Text('back to login'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
