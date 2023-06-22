@@ -65,10 +65,10 @@ class _LoginViewState extends State<LoginView> {
       ..unfocus();
 
     const successSnackBar = SnackBar(
-      content: Text('Submitted successfully! 🎉'),
+      content: Text('Submitted !'),
     );
     const failureSnackBar = SnackBar(
-      content: Text('Something went wrong... 🚨'),
+      content: Text('An error has occurred'),
     );
 
     ScaffoldMessenger.of(context)
@@ -141,10 +141,16 @@ class _LoginViewState extends State<LoginView> {
                 children: [
                   const SizedBox(height: 25),
                   //logo
-                  const Icon(
-                    Icons.local_car_wash,
-                    size: 100,
+                  const Image(
+                    image: AssetImage(Config.resreach_icon),
+                    height: 150,
+                    width: 150,
+                    // fit: BoxFit.cover,
                   ),
+                  // const Icon(
+                  //   Icons.local_car_wash,
+                  //   size: 100,
+                  // ),
 
                   const Text(
                     'Login',

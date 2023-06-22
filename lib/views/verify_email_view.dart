@@ -9,6 +9,7 @@ import 'package:rescuereach/services/auth/bloc/auth_event.dart';
 import '../services/auth/bloc/auth_state.dart';
 import '../utilities/dialogs/error_dialog.dart';
 import '../utilities/dialogs/generic_dialog.dart';
+import '../utils/config.dart';
 
 class verifyEmailView extends StatefulWidget {
   const verifyEmailView({super.key});
@@ -45,9 +46,11 @@ class _verifyEmailViewState extends State<verifyEmailView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.local_car_wash,
-                  size: 100,
+                const Image(
+                  image: AssetImage(Config.resreach_icon),
+                  height: 150,
+                  width: 150,
+                  // fit: BoxFit.cover,
                 ),
                 const Text(
                   'Verify email',

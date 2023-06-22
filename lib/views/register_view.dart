@@ -78,12 +78,12 @@ class _RegisterViewState extends State<RegisterView> {
     }
   }
 
-  Future<void> _dummy() async {
-    const successSnackBar = SnackBar(
-      content: Text('successful confirmation! 🎉'),
-    );
-    return;
-  }
+  // Future<void> _dummy() async {
+  //   const successSnackBar = SnackBar(
+  //     content: Text('successful confirmation! 🎉'),
+  //   );
+  //   return;
+  // }
 
   Future<void> _submitForm() async {
     final email = _emailController.text;
@@ -218,39 +218,13 @@ class _RegisterViewState extends State<RegisterView> {
                               textInputAction: TextInputAction.done,
                             ),
                           ),
-                          const SizedBox(height: 25),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 25.0),
-                            child: TextFormField(
-                              controller: _passwordController,
-                              decoration: const InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.white)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey)),
-                                fillColor: Colors.white,
-                                filled: true,
-                                hintText: 'confirm password',
-                                hintStyle: TextStyle(color: Colors.grey),
-                                helperText: 'Passwords must match',
-                                helperMaxLines: 2,
-                                // labelText: 'Password',
-                                errorMaxLines: 2,
-                              ),
-                              validator: (_) =>
-                                  _state.password.displayError?.text(),
-                              obscureText: true,
-                              textInputAction: TextInputAction.done,
-                            ),
-                          ),
+
                           const SizedBox(height: 40),
                           if (_state.status.isInProgress)
                             const CircularProgressIndicator()
                           else
                             MyButtonRegister(
-                              onTap: _dummy,
+                              onTap: _onSubmit,
                             ),
                           // ElevatedButton.icon(
                           //   key: const Key('loginForm_googleLogin_raisedButton'),

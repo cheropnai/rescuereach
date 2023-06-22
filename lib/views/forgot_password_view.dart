@@ -8,6 +8,7 @@ import 'package:rescuereach/utilities/dialogs/error_dialog.dart';
 import 'package:rescuereach/utilities/dialogs/password_reset_email_sent_dialog.dart';
 
 import '../components/my_button.dart';
+import '../utils/config.dart';
 
 class ForgotPasswordView extends StatefulWidget {
   const ForgotPasswordView({super.key});
@@ -55,9 +56,11 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
-                      Icons.local_car_wash,
-                      size: 100,
+                    const Image(
+                      image: AssetImage(Config.resreach_icon),
+                      height: 150,
+                      width: 150,
+                      // fit: BoxFit.cover,
                     ),
                     const Text(
                       'Forgot Password',
