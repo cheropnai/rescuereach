@@ -113,7 +113,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                       const AuthEventLogOut(),
                                     );
                               },
-                              child: const Text('Go back to Login')),
+                              child: const Text('back to Login')),
                         ],
                       ),
                     ),

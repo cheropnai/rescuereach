@@ -170,7 +170,7 @@ class _RegisterViewState extends State<RegisterView> {
                               filled: true,
                               hintText: 'Enter your email',
                               hintStyle: TextStyle(color: Colors.grey),
-                              labelText: 'Email',
+                              // labelText: 'Email',
                               helperText:
                                   'A valid email e.g. jane.dickens@gmail.com',
                             ),
@@ -212,26 +212,32 @@ class _RegisterViewState extends State<RegisterView> {
                           MyButtonRegister(
                             onTap: _onSubmit,
                           ),
-                        ElevatedButton.icon(
-                          key: const Key('loginForm_googleLogin_raisedButton'),
-                          label: const Text(
-                            'Continue with Google',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            // backgroundColor: theme.colorScheme.secondary,
-                          ),
-                          icon: const Icon(Icons.gps_off_outlined,
-                              color: Colors.white),
-                          onPressed: () => context
-                              .read<AuthBloc>()
-                              .add(const AuthEventGoogleLogin()),
-                        ),
+                        // ElevatedButton.icon(
+                        //   key: const Key('loginForm_googleLogin_raisedButton'),
+                        //   label: const Text(
+                        //     'Continue with Google',
+                        //     style: TextStyle(color: Colors.white),
+                        //   ),
+                        //   style: ElevatedButton.styleFrom(
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(30),
+                        //     ),
+                        //     // backgroundColor: theme.colorScheme.secondary,
+                        //   ),
+                        //   icon: const Icon(Icons.gps_off_outlined,
+                        //       color: Colors.white),
+                        //   onPressed: () => context
+                        //       .read<AuthBloc>()
+                        //       .add(const AuthEventGoogleLogin()),
+                        // ),
                       ],
                     )),
+                TextButton(
+                  onPressed: () async {
+                    context.read<AuthBloc>().add(const AuthEventLogOut());
+                  },
+                  child: const Text('back to login'),
+                ),
               ],
             ),
           ),

@@ -57,11 +57,31 @@ class _verifyEmailViewState extends State<verifyEmailView> {
                   ),
                 ),
                 SizedBox(height: 20),
-                const Text(
-                    "we've sent you an email verification,please tap on the link to verify your account"),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey.shade700,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(6.0),
+                  ),
+                  padding: EdgeInsets.all(16.0),
+                  child: const Text(
+                      "An email verification link has been sent to your email, tap to verify"),
+                ),
                 const SizedBox(height: 20),
-                const Text(
-                    "if you haven't received a verification email yet ,tap the button below"),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey.shade700,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  padding: EdgeInsets.all(16.0),
+                  child: const Text(
+                      "if you haven't received a verification email yet ,tap the button below"),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -78,13 +98,13 @@ class _verifyEmailViewState extends State<verifyEmailView> {
                           const AuthEventCheckVerification(),
                         );
                   },
-                  child: const Text('Continue to HomePage'),
+                  child: const Text('Proceed to HomePage'),
                 ),
                 TextButton(
                   onPressed: () async {
                     context.read<AuthBloc>().add(const AuthEventLogOut());
                   },
-                  child: const Text('restart'),
+                  child: const Text('back to login'),
                 ),
               ],
             ),
