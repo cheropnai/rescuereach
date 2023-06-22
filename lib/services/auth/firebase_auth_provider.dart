@@ -1,4 +1,7 @@
+//import 'dart:js';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:rescuereach/firebase_options.dart';
 import 'package:rescuereach/services/auth/auth_user.dart';
 import 'package:rescuereach/services/auth/auth_exceptions.dart';
@@ -90,6 +93,12 @@ class FirebaseAuthProvider implements AuthProvider {
       throw GenericAuthException();
     }
   }
+  @override
+  Future<void> get reloadUser async {
+        final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await user.reload();}}
+
 
   @override
   Future<void> logout() async {

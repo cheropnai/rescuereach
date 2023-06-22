@@ -4,6 +4,8 @@ import 'package:rescuereach/utilities/dialogs/logout_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../utils/config.dart';
+
 class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});
 
@@ -13,13 +15,12 @@ class WelcomeView extends StatefulWidget {
 
 enum MenuAction { logout }
 
-
 class _WelcomeViewState extends State<WelcomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('Welcome to RescueReach'),
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 191, 166, 233),
           actions: [
             PopupMenuButton<MenuAction>(onSelected: (value) async {
               switch (value) {
@@ -41,7 +42,24 @@ class _WelcomeViewState extends State<WelcomeView> {
             })
           ],
         ),
-        body: const Text('You have logged in'),
-    );
+        body: const SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image: AssetImage(Config.rescue_icon),
+                  height: 200,
+                  width: 200,
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'welcome to rescuereach!',
+                  style: TextStyle(fontSize: 24),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }

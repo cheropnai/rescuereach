@@ -3,6 +3,7 @@ import 'package:rescuereach/services/auth/auth_user.dart';
 abstract class AuthProvider {
   Future<void> initialize();
   AuthUser? get currentUser;
+  Future<void> get reloadUser;
 
   Future<AuthUser> login({
     required String email,

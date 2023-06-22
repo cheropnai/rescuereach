@@ -59,7 +59,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: password,
           );
           await provider.sendEmailVerification();
-          emit(const AuthStateNeedsVerification(isLoading: false));
+          emit( const AuthStateNeedsVerification(isLoading: false, notVerified: false));
         } on Exception catch (e) {
           emit(AuthStateRegistering(exception: e, isLoading: false));
         }
@@ -78,7 +78,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             ),
           );
         } else if (!user.isEmailVerified) {
-          emit(const AuthStateNeedsVerification(isLoading: false));
+          emit(const AuthStateNeedsVerification(isLoading: false, notVerified: false));
         } else {
           emit(AuthStateLoggedIn(
             user: user,
@@ -138,7 +138,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 isLoading: false,
               ),
             );
-            emit(const AuthStateNeedsVerification(isLoading: false));
+            emit(const AuthStateNeedsVerification(isLoading: false, notVerified: false));
           } else {
             emit(
               const AuthStateLoggedOut(
@@ -159,6 +159,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
     );
     //log out
+    on<AuthEventCheckVerification>(
+      (event, emit) async {
+        emit(const AuthStateNeedsVerification(
+            isLoading: true, notVerified: false));
+
+        provider.reloadUser;
+        await Future.delayed(const Duration(milliseconds: 750), () {
+          try {
+            final user = provider.currentUser;
+            if (user != null) {
+              if (!user.isEmailVerified) {
+                emit(const AuthStateNeedsVerification(
+                    isLoading: false, notVerified: true));
+              } else {
+                emit(AuthStateLoggedIn(user: user, isLoading: false));
+              }
+            } else {
+              emit(const AuthStateLoggedOut(exception: null, isLoading: false));
+            }
+          } on Exception catch (e) {
+            emit(AuthStateNeedsVerification(
+                isLoading: false, notVerified: false, exception: e));
+          }
+        });
+},
+);
     on<AuthEventLogOut>((event, emit) async {
       try {
         await provider.logout();

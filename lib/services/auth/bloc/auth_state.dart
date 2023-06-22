@@ -2,7 +2,6 @@ import 'package:rescuereach/services/auth/auth_user.dart';
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 
-
 @immutable
 abstract class AuthState {
   final bool isLoading;
@@ -16,6 +15,16 @@ abstract class AuthState {
 
 class AuthStateUninitialized extends AuthState {
   const AuthStateUninitialized({required super.isLoading});
+}
+
+class AuthStateNeedsVerification extends AuthState {
+  final Exception? exception;
+  final bool notVerified;
+  const AuthStateNeedsVerification(
+      {required super.isLoading,
+      required this.notVerified,
+      this.exception,
+      super.loadingText});
 }
 
 class AuthStateRegistering extends AuthState {
@@ -37,10 +46,6 @@ class AuthStateForgotPassword extends AuthState {
 class AuthStateLoggedIn extends AuthState {
   final AuthUser user;
   const AuthStateLoggedIn({required this.user, required super.isLoading});
-}
-
-class AuthStateNeedsVerification extends AuthState {
-  const AuthStateNeedsVerification({required super.isLoading});
 }
 
 class AuthStateLoggedOut extends AuthState with EquatableMixin {

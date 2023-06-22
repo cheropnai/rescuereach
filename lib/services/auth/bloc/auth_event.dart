@@ -42,3 +42,6 @@ class AuthEventForgotPassword extends AuthEvent {
 class AuthEventLogOut extends AuthEvent {
   const AuthEventLogOut();
 }
+class AuthEventCheckVerification extends AuthEvent {
+  const AuthEventCheckVerification();
+}

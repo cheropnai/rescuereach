@@ -9,6 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
+import '../components/my_button_register.dart';
+
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
 
@@ -130,7 +132,7 @@ class _RegisterViewState extends State<RegisterView> {
       },
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 191, 166, 233),
-        appBar: AppBar(title: const Text('Sign Up')),
+        //appBar: AppBar(title: const Text('Sign Up')),
         body: SafeArea(
           child: Center(
             child: Column(
@@ -170,7 +172,7 @@ class _RegisterViewState extends State<RegisterView> {
                               hintStyle: TextStyle(color: Colors.grey),
                               labelText: 'Email',
                               helperText:
-                                  'A valid email e.g. joe.doe@gmail.com',
+                                  'A valid email e.g. jane.dickens@gmail.com',
                             ),
                             validator: (_) => _state.email.displayError?.text(),
                             keyboardType: TextInputType.emailAddress,
@@ -207,7 +209,7 @@ class _RegisterViewState extends State<RegisterView> {
                         if (_state.status.isInProgress)
                           const CircularProgressIndicator()
                         else
-                          MyButton(
+                          MyButtonRegister(
                             onTap: _onSubmit,
                           ),
                         ElevatedButton.icon(
