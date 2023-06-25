@@ -52,75 +52,78 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
           backgroundColor: const Color.fromARGB(255, 191, 166, 233),
           body: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Image(
-                      image: AssetImage(Config.resreach_icon),
-                      height: 150,
-                      width: 150,
-                      // fit: BoxFit.cover,
-                    ),
-                    const Text(
-                      'Forgot Password',
-                      style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 18,
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 100),
+                      const Image(
+                        image: AssetImage(Config.resreach_icon),
+                        height: 150,
+                        width: 150,
+                        // fit: BoxFit.cover,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      ' A password reset link will be sent to your email',
-                      style:
-                          TextStyle(color: Colors.grey.shade700, fontSize: 14),
-                    ),
-                    const SizedBox(height: 25),
-                    TextFormField(
-                      controller: _controller,
-                      decoration: InputDecoration(
-                        enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey.shade700)),
-                        fillColor: Colors.white,
-                        filled: true,
-                        hintText: 'Enter your email',
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        // icon: Icon(Icons.email),
-                        // labelText: 'Email',
+                      const Text(
+                        'Forgot Password',
+                        style: TextStyle(
+                          color: Colors.purple,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        ' A password reset link will be sent to your email',
+                        style: TextStyle(
+                            color: Colors.grey.shade700, fontSize: 14),
+                      ),
+                      const SizedBox(height: 25),
+                      TextFormField(
+                        controller: _controller,
+                        decoration: InputDecoration(
+                          enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade700)),
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: 'Enter your email',
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          // icon: Icon(Icons.email),
+                          // labelText: 'Email',
 
-                        // helperText: 'A valid email e.g. joe.doe@gmail.com',
+                          // helperText: 'A valid email e.g. joe.doe@gmail.com',
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      child: Column(
-                        children: [
-                          MyButtonReset(
-                            onTap: () {
-                              final email = _controller.text;
-                              context.read<AuthBloc>().add(
-                                    AuthEventForgotPassword(email: email),
-                                  );
-                            },
-                          ),
-                          TextButton(
-                              onPressed: () {
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 25),
+                        child: Column(
+                          children: [
+                            MyButtonReset(
+                              onTap: () {
+                                final email = _controller.text;
                                 context.read<AuthBloc>().add(
-                                      const AuthEventLogOut(),
+                                      AuthEventForgotPassword(email: email),
                                     );
                               },
-                              child: const Text('back to Login')),
-                        ],
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  context.read<AuthBloc>().add(
+                                        const AuthEventLogOut(),
+                                      );
+                                },
+                                child: const Text('back to Login')),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ))),
     );
