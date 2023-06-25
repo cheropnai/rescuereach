@@ -8,7 +8,7 @@ class loginView extends StatelessWidget {
   loginView({super.key});
 
   //Text editing controllers.
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   //sign user in method. //@Monicah you can work on this sign in method
@@ -42,7 +42,7 @@ class loginView extends StatelessWidget {
 
               //username
               MyTextField(
-                controller: usernameController,
+                controller: emailController,
                 hintText: 'Username',
                 obscureText: false,
               ),
@@ -104,17 +104,32 @@ class loginView extends StatelessWidget {
               ),
 
               const SizedBox(height: 50),
-             const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // google button
-                  SquareTile(imagePath: 'lib/images/google-logo-9824.png'),
+  GestureDetector(
+    key: const Key('loginForm_googleLogin_raisedButton') ,
+    onTap: () {
+      // Handle button tap for the first SquareTile
+      // Add your logic here
+    },
+    child:const SquareTile(
+      imagePath: 'lib/images/google-logo-9824.png',
+      child: Text('Button 1'),
+    ),
+  ),
 
-                   SizedBox(width: 25),
+  SizedBox(width: 25),
 
-                  //apple button
-                  SquareTile(imagePath: 'lib/images/png-apple-logo-9723.png'),
-                ],
+  GestureDetector(
+    onTap: (){},
+    child: const SquareTile(
+      imagePath: 'lib/images/png-apple-logo-9723.png',
+      child: Text('Button 2'),
+    ),
+  ),
+],
+
               ),
 
               const SizedBox(height: 50),

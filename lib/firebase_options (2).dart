@@ -26,7 +26,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -50,21 +53,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDnlrzQ8fsv0gjZaPQhj8B8gFgIzYRkU3g',
-    appId: '1:674090690404:android:8cd3a2b3729fb4ff8c3c71',
-    messagingSenderId: '674090690404',
-    projectId: 'rescuereach',
-    storageBucket: 'rescuereach.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB1OsqaqlZVqPlolI1qAsZ5HNraYc7yprI',
-    appId: '1:674090690404:ios:2e6ca85a5312b49e8c3c71',
-    messagingSenderId: '674090690404',
-    projectId: 'rescuereach',
-    storageBucket: 'rescuereach.appspot.com',
-    androidClientId: '674090690404-um5ekfaur33n6bs0omk4t319igs6pt5b.apps.googleusercontent.com',
-    iosClientId: '674090690404-d6kemij9eh79gc13cpfbjgtv4a0mkbte.apps.googleusercontent.com',
-    iosBundleId: 'com.cheropproj.rescuereach',
+    apiKey: 'AIzaSyDbn37yYRZtmB5nI7D-A5P_JQYciFHLMfQ',
+    appId: '1:997787445623:android:59f4f71e407a1c9ea45972',
+    messagingSenderId: '997787445623',
+    projectId: 'bluecheck-75a6b',
+    storageBucket: 'bluecheck-75a6b.appspot.com',
   );
 }

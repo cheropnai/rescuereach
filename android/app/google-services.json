@@ -1,34 +1,85 @@
 {
   "project_info": {
-    "project_number": "210881557931",
-    "project_id": "resreach",
-    "storage_bucket": "resreach.appspot.com"
+    "project_number": "674090690404",
+    "project_id": "rescuereach",
+    "storage_bucket": "rescuereach.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:210881557931:android:e4d253a42818b7d1a68eee",
+        "mobilesdk_app_id": "1:674090690404:android:d7d68929a5920a4d8c3c71",
         "android_client_info": {
-          "package_name": "com.cheropproj.rescuereach"
+          "package_name": "com.chepproj.rescuereach"
         }
       },
       "oauth_client": [
         {
-          "client_id": "210881557931-8lrprkvdu0gpia4ld8hcp246g6gbjb3v.apps.googleusercontent.com",
+          "client_id": "674090690404-um5ekfaur33n6bs0omk4t319igs6pt5b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chepproj.rescuereach",
+            "certificate_hash": "b49d12acbbf0e6470c8ea0a1dca90e7d1df92b0f"
+          }
+        },
+        {
+          "client_id": "674090690404-2o0djo5t0rbbka7q03o4bvcrt3858juv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAgiiCKP5Rx-rOxbiK5gqhezApFtI9AUkg"
+          "current_key": "AIzaSyDnlrzQ8fsv0gjZaPQhj8B8gFgIzYRkU3g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "210881557931-8lrprkvdu0gpia4ld8hcp246g6gbjb3v.apps.googleusercontent.com",
+              "client_id": "674090690404-2o0djo5t0rbbka7q03o4bvcrt3858juv.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "674090690404-97qda09334n2gkepqq0km16beblnt4o7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.chepproj.rescuereach"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674090690404:android:8cd3a2b3729fb4ff8c3c71",
+        "android_client_info": {
+          "package_name": "com.cheropproj.rescuereach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674090690404-2o0djo5t0rbbka7q03o4bvcrt3858juv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnlrzQ8fsv0gjZaPQhj8B8gFgIzYRkU3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674090690404-2o0djo5t0rbbka7q03o4bvcrt3858juv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "674090690404-97qda09334n2gkepqq0km16beblnt4o7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.chepproj.rescuereach"
+              }
             }
           ]
         }
