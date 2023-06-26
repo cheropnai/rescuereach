@@ -1,3 +1,5 @@
+import 'package:rescuereach/api_calls/dummy_server.dart';
+import 'package:rescuereach/components/my_button.dart';
 import 'package:rescuereach/services/auth/bloc/auth_bloc.dart';
 import 'package:rescuereach/services/auth/bloc/auth_event.dart';
 import 'package:rescuereach/utilities/dialogs/logout_dialog.dart';
@@ -57,6 +59,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                   'welcome to rescuereach!',
                   style: TextStyle(fontSize: 24),
                 ),
+                MyButton(onTap: fetchUsers)
               ],
             ),
           ),
