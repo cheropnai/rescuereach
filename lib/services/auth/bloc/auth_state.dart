@@ -33,6 +33,13 @@ class AuthStateRegistering extends AuthState {
       {required super.isLoading, required this.exception});
 }
 
+class AuthStateSignInWithPhone extends AuthState {
+  final Exception? exception;
+  const AuthStateSignInWithPhone(
+    {required super.isLoading, required this.exception});
+  
+}
+
 class AuthStateForgotPassword extends AuthState {
   final Exception? exception;
   final bool hasSentEmail;

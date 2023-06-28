@@ -304,16 +304,16 @@ class _LoginViewState extends State<LoginView> {
                           const SizedBox(
                             width: 25,
                           ),
-                          GestureDetector(
-                            key: const Key(''),
-                            onTap: () => context
-                                .read<AuthBloc>()
-                                .add(const AuthEventGoogleLogin()),
-                            child: const SquareTile(
-                              imagePath: Config.mac_icon,
-                              child: Text(''),
-                            ),
-                          ),
+                          // GestureDetector(
+                          //   key: const Key(''),
+                          //   onTap: () => context
+                          //       .read<AuthBloc>()
+                          //       .add(const AuthEventContinuewithPhone()),
+                          //   child: const SquareTile(
+                          //     imagePath: Config.mac_icon,
+                          //     child: Text('continue with Phone '),
+                          //   ),
+                          // ),
                         ],
                       ),
                       const SizedBox(height: 20),
@@ -328,6 +328,25 @@ class _LoginViewState extends State<LoginView> {
                             },
                             child: const Text(
                               "Not a member? Register now",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              context.read<AuthBloc>().add(
+                                    const AuthEventContinuewithPhone(),
+                                  );
+                            },
+                            child: const Text(
+                              "Continue with phone",
                               style: TextStyle(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold),
@@ -445,7 +464,7 @@ extension on PasswordValidationError {
   String text() {
     switch (this) {
       case PasswordValidationError.invalid:
-        return '''Password must be at least 8 characters and contain at least one letter and number''';
+        return '''Password must be at least 8 characters and contain at least one letter and number and no special characters ''';
     }
   }
 }

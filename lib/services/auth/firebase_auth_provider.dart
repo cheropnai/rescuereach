@@ -93,12 +93,14 @@ class FirebaseAuthProvider implements AuthProvider {
       throw GenericAuthException();
     }
   }
+
   @override
   Future<void> get reloadUser async {
-        final user = FirebaseAuth.instance.currentUser;
+    final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      await user.reload();}}
-
+      await user.reload();
+    }
+  }
 
   @override
   Future<void> logout() async {
@@ -173,3 +175,10 @@ class FirebaseAuthProvider implements AuthProvider {
     }
   }
 }
+  
+//   @override
+//   Future<AuthUser> loginWithPhone() {
+//     // TODO: implement loginWithPhone
+//     throw UnimplementedError();
+//   }
+// }

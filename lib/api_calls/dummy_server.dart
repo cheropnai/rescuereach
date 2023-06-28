@@ -1,7 +1,12 @@
 import 'package:http/http.dart' as http;
 
 void fetchUsers() async {
-  const url = 'http://192.168.100.45:65000/users';
+  const url = 'http://192.168.100.45:65201/messages';
+
+  // final body = {
+  //   'name': 'Cherop',
+  //   'phoneNumber': '+700',
+  // };
 
   try {
     final response = await http.post(Uri.parse(url));

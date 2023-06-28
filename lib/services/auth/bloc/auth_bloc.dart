@@ -59,7 +59,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: password,
           );
           await provider.sendEmailVerification();
-          emit( const AuthStateNeedsVerification(isLoading: false, notVerified: false));
+          emit(const AuthStateNeedsVerification(
+              isLoading: false, notVerified: false));
         } on Exception catch (e) {
           emit(AuthStateRegistering(exception: e, isLoading: false));
         }
@@ -78,7 +79,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             ),
           );
         } else if (!user.isEmailVerified) {
-          emit(const AuthStateNeedsVerification(isLoading: false, notVerified: false));
+          emit(const AuthStateNeedsVerification(
+              isLoading: false, notVerified: false));
         } else {
           emit(AuthStateLoggedIn(
             user: user,
@@ -88,6 +90,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
     );
     //google sign in
+    //Phone sign in
+    // on<AuthEventPhoneSignin>(
+    //   (event, emit) async {
+    //     emit(const AuthStateContinueWithPhone(exception: null,isLoading:
+    //     :true,));
+    //   },
+    // );
     on<AuthEventGoogleLogin>(
       (event, emit) async {
         emit(
@@ -138,7 +147,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 isLoading: false,
               ),
             );
-            emit(const AuthStateNeedsVerification(isLoading: false, notVerified: false));
+            emit(const AuthStateNeedsVerification(
+                isLoading: false, notVerified: false));
           } else {
             emit(
               const AuthStateLoggedOut(
@@ -183,8 +193,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 isLoading: false, notVerified: false, exception: e));
           }
         });
-},
-);
+      },
+    );
     on<AuthEventLogOut>((event, emit) async {
       try {
         await provider.logout();
@@ -206,6 +216,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEventShouldRegister>(
       (event, emit) =>
           emit(const AuthStateRegistering(isLoading: false, exception: null)),
+    );
+    on<AuthEventContinuewithPhone>(
+      (event, emit) => emit(
+          const AuthStateSignInWithPhone(isLoading: false, exception: null)),
     );
   }
 }

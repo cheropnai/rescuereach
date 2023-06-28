@@ -9,14 +9,19 @@ class AuthEventInitialize extends AuthEvent {
   const AuthEventInitialize();
 }
 
+class AuthEventPhoneSignin extends AuthEvent {
+  final String phoneNumber;
+  const AuthEventPhoneSignin(this.phoneNumber);
+}
+
 class AuthEventSendEmailVerification extends AuthEvent {
   const AuthEventSendEmailVerification();
 }
 
 class AuthEventLogIn extends AuthEvent {
-  final String email; 
+  final String email;
   final String password;
-  const AuthEventLogIn(this.email, this.password); 
+  const AuthEventLogIn(this.email, this.password);
 }
 
 class AuthEventGoogleLogin extends AuthEvent {
@@ -24,15 +29,18 @@ class AuthEventGoogleLogin extends AuthEvent {
 }
 
 class AuthEventRegister extends AuthEvent {
-  final String email; 
+  final String email;
   final String password;
-  const AuthEventRegister(this.email, this.password); 
+  const AuthEventRegister(this.email, this.password);
 }
 
 class AuthEventShouldRegister extends AuthEvent {
   const AuthEventShouldRegister();
 }
 
+class AuthEventContinuewithPhone extends AuthEvent{
+  const AuthEventContinuewithPhone();
+}
 class AuthEventForgotPassword extends AuthEvent {
   final String? email;
 
@@ -42,6 +50,7 @@ class AuthEventForgotPassword extends AuthEvent {
 class AuthEventLogOut extends AuthEvent {
   const AuthEventLogOut();
 }
+
 class AuthEventCheckVerification extends AuthEvent {
   const AuthEventCheckVerification();
 }

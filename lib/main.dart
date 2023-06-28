@@ -4,9 +4,11 @@ import 'package:rescuereach/services/auth/bloc/auth_bloc.dart';
 import 'package:rescuereach/services/auth/bloc/auth_event.dart';
 import 'package:rescuereach/services/auth/bloc/auth_state.dart';
 import 'package:rescuereach/services/auth/firebase_auth_provider.dart';
+import 'package:rescuereach/views/SignInPhone_view.dart';
 import 'package:rescuereach/views/forgot_password_view.dart';
 import 'package:rescuereach/views/login_view%20(2).dart';
 import 'package:rescuereach/views/login_view.dart';
+import 'package:rescuereach/views/phoneVerification_view.dart';
 import 'package:rescuereach/views/register_dummy.dart';
 import 'package:rescuereach/views/register_view.dart';
 import 'package:rescuereach/views/verify_email_view.dart';
@@ -60,6 +62,8 @@ class HomePage extends StatelessWidget {
         return const RegisterView();
       } else if (state is AuthStateForgotPassword) {
         return const ForgotPasswordView();
+      } else if (state is AuthStateSignInWithPhone) {
+        return PhoneVerificationPage();
       } else {
         return const Scaffold(
           body: CircularProgressIndicator(),
