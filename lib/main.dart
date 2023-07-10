@@ -13,6 +13,8 @@ import 'package:rescuereach/views/verify_email_view.dart';
 import 'package:rescuereach/views/welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,10 +37,12 @@ void main() {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+  const HomePage ({super.key});
+// Initialize Firebase
+    
   @override
   Widget build(BuildContext context) {
+
     context.read<AuthBloc>().add(const AuthEventInitialize());
     return BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
       if (state.isLoading) {
