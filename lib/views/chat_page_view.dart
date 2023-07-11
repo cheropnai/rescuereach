@@ -29,6 +29,7 @@ class _ChatPageState extends State<ChatPage> {
       await _chatService.sendMessage(
           widget.receiverUserID, _messageController.text);
       //clear the controller after sending the message
+      _messageController.clear();
     }
   }
 
@@ -57,8 +58,12 @@ class _ChatPageState extends State<ChatPage> {
       stream: _chatService.getMessages(
           widget.receiverUserID, auth.currentUser!.uid),
       builder: (context, snapshot) {
+        print(snapshot.data);
         if (snapshot.hasError) {
-          return Text('Error${snapshot.error}');
+          return Container(child: Text('Error${snapshot.error}'));
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Container(child: const Text('loading...'));
         }
         return ListView(
           children: snapshot.data!.docs

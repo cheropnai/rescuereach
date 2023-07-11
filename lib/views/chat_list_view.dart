@@ -22,7 +22,7 @@ enum MenuAction { logout }
 
 class _ChatListViewState extends State<ChatListView> {
   //instance of Auth
-   final currentUser = FirebaseAuth.instance.currentUser;
+  final currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +59,17 @@ class _ChatListViewState extends State<ChatListView> {
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Text('error');
+          return Container(
+            child: const Text('error'),
+          );
         }
+
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text('waiting');
+          return Container(
+            child: const Text('waiting'),
+          );
         }
+
         return ListView(
           children: snapshot.data!.docs
               .map<Widget>((doc) => _buildUserListItem(doc))
@@ -77,7 +83,8 @@ class _ChatListViewState extends State<ChatListView> {
     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
     if (currentUser!.email != data['email']) {
       return ListTile(
-        title: data['email'],
+       title: Text(data['email']),
+
         onTap: () {
           Navigator.push(
               context,

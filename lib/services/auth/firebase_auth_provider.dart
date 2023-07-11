@@ -35,8 +35,9 @@ class FirebaseAuthProvider implements AuthProvider {
         password: password,
       );
       // Create user collection in Firestore
-      await createUserCollection();
+      await createUserCollectionOnRegister();
       final user = currentUser;
+      
 
       print(email);
       print('creating firebase user');
@@ -88,6 +89,7 @@ class FirebaseAuthProvider implements AuthProvider {
         email: email,
         password: password,
       );
+        await createUserCollectionOnLogin();
       final user = currentUser;
       if (user != null) {
         return user;
@@ -190,7 +192,7 @@ class FirebaseAuthProvider implements AuthProvider {
   //   // TODO: implement loginWithPhone
   //   throw UnimplementedError();
   // }
-  Future<void> createUserCollection() async {
+  Future<void> createUserCollectionOnRegister() async {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser != null) {
@@ -200,6 +202,21 @@ class FirebaseAuthProvider implements AuthProvider {
           .collection('users')
           .doc(currentUser.uid)
           .set({'uid': userId, 'email': userEmail});
+      print('creating user collection in Firestore');
+    } else {
+      print('No current user logged in.');
+    }
+  }
+  Future<void> createUserCollectionOnLogin() async {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      final userId = currentUser.uid;
+      final userEmail = currentUser.email;
+      await firestore
+          .collection('users')
+          .doc(currentUser.uid)
+          .set({'uid': userId, 'email': userEmail},SetOptions(merge: true));
       print('creating user collection in Firestore');
     } else {
       print('No current user logged in.');

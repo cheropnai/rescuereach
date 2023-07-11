@@ -45,7 +45,7 @@ class ChatService extends ChangeNotifier {
     ids.sort();
     String chatRoomId = ids.join("_");
     return firestore
-        .collection('chat_rooms')
+        .collection('chat_room')
         .doc(chatRoomId)
         .collection('messages')
         .orderBy('timestamp', descending: false)

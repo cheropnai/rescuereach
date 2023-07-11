@@ -4,6 +4,7 @@ import 'package:rescuereach/services/auth/bloc/auth_bloc.dart';
 import 'package:rescuereach/services/auth/bloc/auth_event.dart';
 import 'package:rescuereach/services/auth/bloc/auth_state.dart';
 import 'package:rescuereach/services/auth/firebase_auth_provider.dart';
+import 'package:rescuereach/views/chat_list_view.dart';
 import 'package:rescuereach/views/forgot_password_view.dart';
 import 'package:rescuereach/views/login_view%20(2).dart';
 import 'package:rescuereach/views/login_view.dart';
@@ -14,7 +15,6 @@ import 'package:rescuereach/views/welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,12 +37,11 @@ void main() {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage ({super.key});
+  const HomePage({super.key});
 // Initialize Firebase
-    
+
   @override
   Widget build(BuildContext context) {
-
     context.read<AuthBloc>().add(const AuthEventInitialize());
     return BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
       if (state.isLoading) {
