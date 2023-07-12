@@ -11,6 +11,8 @@ import 'package:rescuereach/views/login_view%20(2).dart';
 import 'package:rescuereach/views/login_view.dart';
 import 'package:rescuereach/views/register_dummy.dart';
 import 'package:rescuereach/views/register_view.dart';
+import 'package:rescuereach/views/report_views/notes_list_view.dart';
+import 'package:rescuereach/views/report_views/notes_view.dart';
 import 'package:rescuereach/views/verify_email_view.dart';
 import 'package:rescuereach/views/welcome_view.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +57,7 @@ class HomePage extends StatelessWidget {
       }
     }, builder: (context, state) {
       if (state is AuthStateLoggedIn) {
-        return const ChatListView();
+        return const WelcomeView();
       } else if (state is AuthStateNeedsVerification) {
         return const verifyEmailView();
       } else if (state is AuthStateLoggedOut) {

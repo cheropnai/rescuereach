@@ -13,14 +13,14 @@ import '../../enum/menu_Action.dart';
 import '../../utilities/dialogs/logout_dialog.dart';
 //import '../../utilities/show_logout_dialog.dart';
 
-class notesview extends StatefulWidget {
-  const notesview({super.key});
+class Notesview extends StatefulWidget {
+  const Notesview({super.key});
 
   @override
-  State<notesview> createState() => _notesviewState();
+  State<Notesview> createState() => _NotesviewState();
 }
 
-class _notesviewState extends State<notesview> {
+class _NotesviewState extends State<Notesview> {
   late final FirebaseCloudStorage _notesService;
   String get userId => FirebaseAuth.instance.currentUser!.uid;
 

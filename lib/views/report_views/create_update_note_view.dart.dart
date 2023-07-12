@@ -4,7 +4,7 @@ import 'package:share_plus/share_plus.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 //import '../../services/crud/notes_service.dart';
-import 'package:rescuereach/services/reports/Report.dart';
+import 'package:rescuereach/services/reports/report.dart';
 //import 'package:personalnotesapp/services/cloud/cloud_storage_exceptions.dart';
 import 'package:rescuereach/services/reports/report_cloud_storage.dart';
 

@@ -54,7 +54,7 @@ class FirebaseCloudStorage {
     });
     final fetchedNote = await document.get();
     return CloudNote(
-        documentId: fetchedNote.id, ownerUserId: ownerUserId, text: '');
+        documentId: fetchedNote.id, ownerUserId: ownerUserId, text: '', timeStamp: '');
   }
 
   //creating a singleton
