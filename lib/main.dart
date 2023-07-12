@@ -6,6 +6,7 @@ import 'package:rescuereach/services/auth/bloc/auth_state.dart';
 import 'package:rescuereach/services/auth/firebase_auth_provider.dart';
 import 'package:rescuereach/views/chat_list_view.dart';
 import 'package:rescuereach/views/forgot_password_view.dart';
+import 'package:rescuereach/views/further_registration_view.dart';
 import 'package:rescuereach/views/login_view%20(2).dart';
 import 'package:rescuereach/views/login_view.dart';
 import 'package:rescuereach/views/register_dummy.dart';
@@ -54,7 +55,7 @@ class HomePage extends StatelessWidget {
       }
     }, builder: (context, state) {
       if (state is AuthStateLoggedIn) {
-        return const WelcomeView();
+        return const ChatListView();
       } else if (state is AuthStateNeedsVerification) {
         return const verifyEmailView();
       } else if (state is AuthStateLoggedOut) {
@@ -63,6 +64,8 @@ class HomePage extends StatelessWidget {
         return const RegisterView();
       } else if (state is AuthStateForgotPassword) {
         return const ForgotPasswordView();
+      } else if (state is AuthStateRegistrationComplete) {
+        return const WelcomeView();
       } else {
         return const Scaffold(
           body: CircularProgressIndicator(),

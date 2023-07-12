@@ -33,6 +33,21 @@ class AuthStateRegistering extends AuthState {
       {required super.isLoading, required this.exception});
 }
 
+class AuthStateFurtherRegistering extends AuthState {
+  final Exception? exception;
+  const AuthStateFurtherRegistering(
+      {required super.isLoading, required this.exception});
+}
+class AuthStateRegistrationComplete extends AuthState {
+ 
+  const AuthStateRegistrationComplete(
+      {required super.isLoading});
+}
+class AuthStateLoading extends AuthState {
+  final Exception? exception;
+  const AuthStateLoading({required super.isLoading, required this.exception});
+}
+
 class AuthStateForgotPassword extends AuthState {
   final Exception? exception;
   final bool hasSentEmail;

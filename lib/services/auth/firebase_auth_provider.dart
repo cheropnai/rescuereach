@@ -37,7 +37,6 @@ class FirebaseAuthProvider implements AuthProvider {
       // Create user collection in Firestore
       await createUserCollectionOnRegister();
       final user = currentUser;
-      
 
       print(email);
       print('creating firebase user');
@@ -89,7 +88,7 @@ class FirebaseAuthProvider implements AuthProvider {
         email: email,
         password: password,
       );
-        await createUserCollectionOnLogin();
+      await createUserCollectionOnLogin();
       final user = currentUser;
       if (user != null) {
         return user;
@@ -108,12 +107,14 @@ class FirebaseAuthProvider implements AuthProvider {
       throw GenericAuthException();
     }
   }
+
   @override
   Future<void> get reloadUser async {
-        final user = FirebaseAuth.instance.currentUser;
+    final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      await user.reload();}}
-
+      await user.reload();
+    }
+  }
 
   @override
   Future<void> logout() async {
@@ -207,6 +208,7 @@ class FirebaseAuthProvider implements AuthProvider {
       print('No current user logged in.');
     }
   }
+
   Future<void> createUserCollectionOnLogin() async {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
     final currentUser = FirebaseAuth.instance.currentUser;
@@ -216,7 +218,27 @@ class FirebaseAuthProvider implements AuthProvider {
       await firestore
           .collection('users')
           .doc(currentUser.uid)
-          .set({'uid': userId, 'email': userEmail},SetOptions(merge: true));
+          .set({'uid': userId, 'email': userEmail}, SetOptions(merge: true));
+      print('creating user collection in Firestore');
+    } else {
+      print('No current user logged in.');
+    }
+  }
+
+  @override
+  Future<void> createUserCollection(
+      {required String phoneNumber, required String roleName}) async {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      final userId = currentUser.uid;
+      final userEmail = currentUser.email;
+      await firestore.collection('users').doc(currentUser.uid).set({
+        'uid': userId,
+        'email': userEmail,
+        'phone': phoneNumber,
+        'role': roleName
+      });
       print('creating user collection in Firestore');
     } else {
       print('No current user logged in.');
