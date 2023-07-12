@@ -46,7 +46,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
     _textController.addListener(_textControllerListener);
   }
 
-  Future<Object> createOrGetExistingNote(BuildContext context) async {
+  Future<CloudNote> createOrGetExistingNote(BuildContext context) async {
     final widgetNote = context.getArgument<CloudNote>();
     if (widgetNote != null) {
       _note = widgetNote;
@@ -62,7 +62,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
     final userId = currentUser.uid;
 
     final newNote = await _notesService.createNewNote(ownerUserId: userId);
-    _note = newNote as CloudNote?;
+    _note = newNote;
     return newNote;
   }
 

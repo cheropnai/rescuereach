@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 
-import 'Report_storage_constants.dart';
+import 'report_storage_constants.dart';
 
 @immutable
 class CloudNote {
@@ -20,7 +20,7 @@ class CloudNote {
   CloudNote.fromSnapshot(QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
       : documentId = snapshot.id,
         ownerUserId = snapshot.data()[ownerUserIdFieldName],
-        text = snapshot.data()[textFieldName],
+        text = snapshot.data()[textFieldName] as String,
         timeStamp = snapshot.data()[timeStampField] as String;
 
 }
