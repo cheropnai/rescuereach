@@ -6,6 +6,7 @@ import 'package:rescuereach/utilities/dialogs/logout_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rescuereach/views/chat_list_view.dart';
+import 'package:rescuereach/components/reportbutton.dart';
 
 import '../utils/config.dart';
 
@@ -190,7 +191,9 @@ class _WelcomeViewState extends State<WelcomeView> {
                   ),
                 ],
               ),
+            const ReportButton(onTap: fetchUsers)
             ],
+
           ),
         ),
       ),
@@ -199,15 +202,10 @@ class _WelcomeViewState extends State<WelcomeView> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.add_alert), label: 'Alert'),
-            BottomNavigationBarItem(
                 icon: Icon(Icons.logout_outlined), label: 'Log out'),
           ],
           onTap: (index) {
             if (index == 1) {
-              fetchUsers;
-            }
-            if (index == 2) {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {

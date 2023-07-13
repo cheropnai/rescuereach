@@ -32,9 +32,9 @@ void main() {
         create: (context) => AuthBloc(FirebaseAuthProvider()),
         child: const HomePage(),
       ),
-      // routes: {
-      //   createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
-      // },
+      routes: {
+        'home': (context) => const WelcomeView(),
+      },
     ),
   );
 }

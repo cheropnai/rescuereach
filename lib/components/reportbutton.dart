@@ -13,7 +13,7 @@ class ReportButton extends StatelessWidget {
         padding: EdgeInsets.all(25),
         margin: EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
-            color: Colors.black, borderRadius: BorderRadius.circular(8)),
+            color: Colors.pink, borderRadius: BorderRadius.circular(8)),
         child: const Center(
           child: Text(
             "help!",
