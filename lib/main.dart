@@ -4,15 +4,20 @@ import 'package:rescuereach/services/auth/bloc/auth_bloc.dart';
 import 'package:rescuereach/services/auth/bloc/auth_event.dart';
 import 'package:rescuereach/services/auth/bloc/auth_state.dart';
 import 'package:rescuereach/services/auth/firebase_auth_provider.dart';
+import 'package:rescuereach/views/chat_list_view.dart';
 import 'package:rescuereach/views/forgot_password_view.dart';
+import 'package:rescuereach/views/further_registration_view.dart';
 import 'package:rescuereach/views/login_view%20(2).dart';
 import 'package:rescuereach/views/login_view.dart';
 import 'package:rescuereach/views/register_dummy.dart';
 import 'package:rescuereach/views/register_view.dart';
+import 'package:rescuereach/views/report_views/notes_list_view.dart';
+import 'package:rescuereach/views/report_views/notes_view.dart';
 import 'package:rescuereach/views/verify_email_view.dart';
 import 'package:rescuereach/views/welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +41,7 @@ void main() {
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+// Initialize Firebase
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +66,8 @@ class HomePage extends StatelessWidget {
         return const RegisterView();
       } else if (state is AuthStateForgotPassword) {
         return const ForgotPasswordView();
+      } else if (state is AuthStateRegistrationComplete) {
+        return const WelcomeView();
       } else {
         return const Scaffold(
           body: CircularProgressIndicator(),

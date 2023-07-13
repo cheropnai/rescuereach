@@ -10,6 +10,10 @@ abstract class AuthProvider {
     required String password,
   });
   Future<AuthUser> loginWithGoogle();
+  Future<void> createUserCollection({
+    required String phoneNumber,
+    required String roleName,
+  });
   Future<AuthUser> createUser({
     required String email,
     required String password,

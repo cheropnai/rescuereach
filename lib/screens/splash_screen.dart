@@ -33,13 +33,13 @@ class _splashScreenState extends State<splashScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
         body: SafeArea(
-      child: Center(
-        child: Image(
-          image: AssetImage(Config.app_icon),
-          height: 80,
-          width: 80,
-        ),
-      ),
-    ));
+          child: Center(
+            child: Image(
+              image: AssetImage(Config.app_icon),
+              height: 80,
+              width: 80,
+            ),
+          ),
+        ));
   }
 }

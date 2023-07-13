@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:rescuereach/utils/config.dart';
 
 import '../components/my_button_register.dart';
 
@@ -148,9 +149,10 @@ class _RegisterViewState extends State<RegisterView> {
                 children: [
                   const SizedBox(height: 25),
                   //logo
-                  const Icon(
-                    Icons.local_car_wash,
-                    size: 100,
+                  const Image(
+                    image: AssetImage(Config.resreach_icon),
+                    width: 50,
+                    height: 70,
                   ),
                   const Text(
                     'Register',

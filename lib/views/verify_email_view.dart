@@ -29,7 +29,7 @@ class _verifyEmailViewState extends State<verifyEmailView> {
                 context: context,
                 title: 'Not Verified',
                 content:
-                    'This email has not been verified. If not received, please resend the verification email and try again',
+                'This email has not been verified. If not received, please resend the verification email and try again',
                 optionsBuilder: () => {'OK': null},
               );
             }
@@ -59,7 +59,7 @@ class _verifyEmailViewState extends State<verifyEmailView> {
                     fontSize: 18,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -98,8 +98,8 @@ class _verifyEmailViewState extends State<verifyEmailView> {
                 TextButton(
                   onPressed: () {
                     context.read<AuthBloc>().add(
-                          const AuthEventCheckVerification(),
-                        );
+                      const AuthEventCheckVerification(),
+                    );
                   },
                   child: const Text('Proceed to HomePage'),
                 ),

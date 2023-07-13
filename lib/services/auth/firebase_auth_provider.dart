@@ -1,5 +1,6 @@
 //import 'dart:js';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:rescuereach/firebase_options.dart';
@@ -9,6 +10,7 @@ import 'package:rescuereach/services/auth/auth_provider.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rescuereach/services/firestore/UserCollection.dart';
 
 import 'package:firebase_auth/firebase_auth.dart'
     show FirebaseAuth, FirebaseAuthException;
@@ -27,19 +29,30 @@ class FirebaseAuthProvider implements AuthProvider {
     required String password,
   }) async {
     try {
+      //UserCredential userCredential =
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      // Create user collection in Firestore
+      await createUserCollectionOnRegister();
+      final user = currentUser;
+
       print(email);
       print('creating firebase user');
-      final user = currentUser;
+      // _firestore
+      //     .collection('users')
+      //     .doc(userCredential.user!.uid)
+      //     .set({'uid': userCredential.user!.uid, 'email': email});
+      // print('creating user collection in firestore');
+
       if (user != null) {
         print(user);
         return user;
       } else {
         throw UserNotLoggedInException;
       }
+      //creating a new documnet for the the new user that has just been created.
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw WeakPasswordAuthException();
@@ -75,6 +88,7 @@ class FirebaseAuthProvider implements AuthProvider {
         email: email,
         password: password,
       );
+      await createUserCollectionOnLogin();
       final user = currentUser;
       if (user != null) {
         return user;
@@ -93,12 +107,14 @@ class FirebaseAuthProvider implements AuthProvider {
       throw GenericAuthException();
     }
   }
+
   @override
   Future<void> get reloadUser async {
-        final user = FirebaseAuth.instance.currentUser;
+    final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      await user.reload();}}
-
+      await user.reload();
+    }
+  }
 
   @override
   Future<void> logout() async {
@@ -170,6 +186,62 @@ class FirebaseAuthProvider implements AuthProvider {
       print('did not sing innnnnnnnnnnnn');
       print(e);
       throw const LogInWithGoogleFailure();
+    }
+  }
+
+  // Future<AuthUser> loginWithPhone() {
+  //   // TODO: implement loginWithPhone
+  //   throw UnimplementedError();
+  // }
+  Future<void> createUserCollectionOnRegister() async {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      final userId = currentUser.uid;
+      final userEmail = currentUser.email;
+      await firestore
+          .collection('users')
+          .doc(currentUser.uid)
+          .set({'uid': userId, 'email': userEmail});
+      print('creating user collection in Firestore');
+    } else {
+      print('No current user logged in.');
+    }
+  }
+
+  Future<void> createUserCollectionOnLogin() async {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      final userId = currentUser.uid;
+      final userEmail = currentUser.email;
+      await firestore
+          .collection('users')
+          .doc(currentUser.uid)
+          .set({'uid': userId, 'email': userEmail}, SetOptions(merge: true));
+      print('creating user collection in Firestore');
+    } else {
+      print('No current user logged in.');
+    }
+  }
+
+  @override
+  Future<void> createUserCollection(
+      {required String phoneNumber, required String roleName}) async {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      final userId = currentUser.uid;
+      final userEmail = currentUser.email;
+      await firestore.collection('users').doc(currentUser.uid).set({
+        'uid': userId,
+        'email': userEmail,
+        'phone': phoneNumber,
+        'role': roleName
+      });
+      print('creating user collection in Firestore');
+    } else {
+      print('No current user logged in.');
     }
   }
 }

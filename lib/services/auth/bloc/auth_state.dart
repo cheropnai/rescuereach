@@ -22,9 +22,9 @@ class AuthStateNeedsVerification extends AuthState {
   final bool notVerified;
   const AuthStateNeedsVerification(
       {required super.isLoading,
-      required this.notVerified,
-      this.exception,
-      super.loadingText});
+        required this.notVerified,
+        this.exception,
+        super.loadingText});
 }
 
 class AuthStateRegistering extends AuthState {
@@ -33,14 +33,29 @@ class AuthStateRegistering extends AuthState {
       {required super.isLoading, required this.exception});
 }
 
+class AuthStateFurtherRegistering extends AuthState {
+  final Exception? exception;
+  const AuthStateFurtherRegistering(
+      {required super.isLoading, required this.exception});
+}
+class AuthStateRegistrationComplete extends AuthState {
+
+  const AuthStateRegistrationComplete(
+      {required super.isLoading});
+}
+class AuthStateLoading extends AuthState {
+  final Exception? exception;
+  const AuthStateLoading({required super.isLoading, required this.exception});
+}
+
 class AuthStateForgotPassword extends AuthState {
   final Exception? exception;
   final bool hasSentEmail;
 
   const AuthStateForgotPassword(
       {required this.exception,
-      required this.hasSentEmail,
-      required super.isLoading});
+        required this.hasSentEmail,
+        required super.isLoading});
 }
 
 class AuthStateLoggedIn extends AuthState {
@@ -52,8 +67,8 @@ class AuthStateLoggedOut extends AuthState with EquatableMixin {
   final Exception? exception;
   const AuthStateLoggedOut(
       {required this.exception,
-      required bool isLoading,
-      super.loadingText //new method of doing it
+        required bool isLoading,
+        super.loadingText //new method of doing it
       })
       : super(isLoading: isLoading); //method shown in course
 

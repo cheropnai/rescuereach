@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rescuereach/services/auth/bloc/auth_event.dart';
 import 'package:rescuereach/services/auth/bloc/auth_state.dart';
 import 'package:rescuereach/services/auth/firebase_auth_provider.dart';
@@ -43,14 +45,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
     //send email verification
     on<AuthEventSendEmailVerification>(
-      (event, emit) async {
+          (event, emit) async {
         await provider.sendEmailVerification();
         emit(state);
       },
     );
     //register
     on<AuthEventRegister>(
-      (event, emit) async {
+          (event, emit) async {
         final email = event.email;
         final password = event.password;
         try {
@@ -59,15 +61,46 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: password,
           );
           await provider.sendEmailVerification();
-          emit( const AuthStateNeedsVerification(isLoading: false, notVerified: false));
+          emit(const AuthStateNeedsVerification(
+              isLoading: false, notVerified: false));
         } on Exception catch (e) {
           emit(AuthStateRegistering(exception: e, isLoading: false));
         }
       },
     );
+    on<AuthEventFurtherRegistration>((event, emit) async {
+      final phone = event.phoneNumber;
+      final role = event.role;
+
+      try {
+        await provider.createUserCollection(phoneNumber: phone, roleName: role);
+        if (role == 'User') {
+          emit(const AuthStateRegistrationComplete(isLoading: false));
+        }else if(role == 'admin'){
+
+        }
+        else if(role == 'mentor'){
+
+        }
+        else if(role == 'organisation'){
+
+        }
+        else{
+
+        }
+
+      } on Exception catch (e) {
+        final user = provider.currentUser;
+
+        emit(AuthStateLoggedIn(
+          user: user!,
+          isLoading: false,
+        ));
+      }
+    });
     //initialize
     on<AuthEventInitialize>(
-      (event, emit) async {
+          (event, emit) async {
         await provider.initialize();
         final user = provider.currentUser;
         if (user == null) {
@@ -78,7 +111,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             ),
           );
         } else if (!user.isEmailVerified) {
-          emit(const AuthStateNeedsVerification(isLoading: false, notVerified: false));
+          emit(const AuthStateNeedsVerification(
+              isLoading: false, notVerified: false));
         } else {
           emit(AuthStateLoggedIn(
             user: user,
@@ -89,7 +123,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     //google sign in
     on<AuthEventGoogleLogin>(
-      (event, emit) async {
+          (event, emit) async {
         emit(
           const AuthStateLoggedOut(
               exception: null,
@@ -117,7 +151,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     //login
     on<AuthEventLogIn>(
-      (event, emit) async {
+          (event, emit) async {
         emit(
           const AuthStateLoggedOut(
               exception: null,
@@ -138,7 +172,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 isLoading: false,
               ),
             );
-            emit(const AuthStateNeedsVerification(isLoading: false, notVerified: false));
+            emit(const AuthStateNeedsVerification(
+                isLoading: false, notVerified: false));
           } else {
             emit(
               const AuthStateLoggedOut(
@@ -160,7 +195,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     //log out
     on<AuthEventCheckVerification>(
-      (event, emit) async {
+          (event, emit) async {
         emit(const AuthStateNeedsVerification(
             isLoading: true, notVerified: false));
 
@@ -183,8 +218,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 isLoading: false, notVerified: false, exception: e));
           }
         });
-},
-);
+      },
+    );
     on<AuthEventLogOut>((event, emit) async {
       try {
         await provider.logout();
@@ -204,7 +239,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
     on<AuthEventShouldRegister>(
-      (event, emit) =>
+          (event, emit) =>
           emit(const AuthStateRegistering(isLoading: false, exception: null)),
     );
   }

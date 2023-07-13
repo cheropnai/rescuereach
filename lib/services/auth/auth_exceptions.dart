@@ -17,7 +17,7 @@ class GenericAuthException implements Exception {}
 class UserNotLoggedInException implements Exception {}
 
 class LogInWithGoogleFailure implements Exception{
-    /// {@macro log_in_with_google_failure}
+  /// {@macro log_in_with_google_failure}
   const LogInWithGoogleFailure([
     this.message = 'An unknown exception occurred.',
   ]);

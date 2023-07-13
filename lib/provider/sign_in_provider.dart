@@ -50,14 +50,14 @@ class SignInProvider extends ChangeNotifier {
   Future<void> signInWithGoogle() async {
     print('wacsha uflaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signIn();
+    await googleSignIn.signIn();
     print('wacsha ufldddddddddddddddddddddddddddddddda');
 
     if (googleSignInAccount != null) {
       try {
         print('sending sign in prompt');
         final GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
+        await googleSignInAccount.authentication;
         print('googleSign details tokend gotttttttttttttttttttttttt');
         final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
@@ -65,7 +65,7 @@ class SignInProvider extends ChangeNotifier {
         );
         print('sending credentials rto firebase.comdddddddddddddd');
         final UserCredential userCredential =
-            await firebaseAuth.signInWithCredential(credential);
+        await firebaseAuth.signInWithCredential(credential);
         print(userCredential);
         final User userDetails = userCredential.user!;
 
@@ -82,7 +82,7 @@ class SignInProvider extends ChangeNotifier {
         switch (e.code) {
           case "account-exists-with-different-credentials":
             _errorCode =
-                "You already have an account with us. Sign in with a different email.";
+            "You already have an account with us. Sign in with a different email.";
             _hasError = true;
             break;
           case "sign_in_failed":
@@ -112,17 +112,17 @@ class SignInProvider extends ChangeNotifier {
         .doc(uid)
         .get()
         .then((DocumentSnapshot snapshot) => (
-              _uid = snapshot['uid'],
-              _name = snapshot['name'],
-              _email = snapshot['email'],
-              _imageUrl = snapshot['image_url'],
-              _provider = snapshot['provider'],
-            ));
+    _uid = snapshot['uid'],
+    _name = snapshot['name'],
+    _email = snapshot['email'],
+    _imageUrl = snapshot['image_url'],
+    _provider = snapshot['provider'],
+    ));
   }
 
   Future saveDataToFireStore() async {
     final DocumentReference r =
-        FirebaseFirestore.instance.collection("users").doc(uid);
+    FirebaseFirestore.instance.collection("users").doc(uid);
     await r.set({
       "name": _name,
       "email": _email,
@@ -145,7 +145,7 @@ class SignInProvider extends ChangeNotifier {
   // check if the user exists in cloud firestore
   Future<bool> checkUserExists() async {
     DocumentSnapshot snap =
-        await FirebaseFirestore.instance.collection('users').doc(_uid).get();
+    await FirebaseFirestore.instance.collection('users').doc(_uid).get();
     if (snap.exists) {
       print('existing user');
       return true;
