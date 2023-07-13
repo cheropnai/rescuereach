@@ -96,7 +96,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('New Note'),
+          title: const Text('write/ edit your case narrative'),
           actions: [
             IconButton(
               onPressed: () async {
@@ -122,7 +122,8 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     decoration: const InputDecoration(
-                        hintText: 'Give more information about the incident here, include any information you would like the authorities to know about the incident  ...'),
+                        hintText:
+                            'Give more information about the incident here, include any information you would like the authorities to know about the incident  ...'),
                   );
                 default:
                   return const CircularProgressIndicator();

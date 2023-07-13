@@ -35,13 +35,13 @@ class _NotesviewState extends State<Notesview> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Notes'),
+        title: const Text('Report Narratives'),
         actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
-              },
-              icon: const Icon(Icons.add)),
+          // IconButton(
+          //     onPressed: () {
+          //       Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
+          //     },
+          //     icon: const Icon(Icons.add)),
           PopupMenuButton<MenuAction>(
             onSelected: (value) async {
               switch (value) {
@@ -49,11 +49,10 @@ class _NotesviewState extends State<Notesview> {
                   final shouldLogout = await showLogoutDialog(context);
                   //devtools.log(shouldLogout.toString());
                   if (shouldLogout) {
-                    context.read<AuthBloc>().add( const AuthEventLogOut());
+                    context.read<AuthBloc>().add(const AuthEventLogOut());
                     /*Navigator.of(context).pushNamedAndRemoveUntil(
                       loginRoute,
                       (_) => false,*/
-                    
                   }
                   break;
               }
@@ -75,7 +74,7 @@ class _NotesviewState extends State<Notesview> {
             case ConnectionState.active:
               if (snapshot.hasData) {
                 final allNotes = snapshot.data as Iterable<CloudNote>;
-                
+
                 return notesListView(
                   notes: allNotes,
                   onDeleteNote: (note) async {

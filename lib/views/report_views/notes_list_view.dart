@@ -1,5 +1,6 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:rescuereach/services/reports/report.dart';
 //import 'package:personalnotesapp/services/crud/notes_service.dart';
 
@@ -24,15 +25,22 @@ class notesListView extends StatelessWidget {
         itemCount: notes.length,
         itemBuilder: (context, index) {
           final note = notes.elementAt(index);
+
           return ListTile(
             onTap: () {
               onTap(note);
             },
-            title: Text(
+            subtitle: Text(
               note.text,
-              maxLines: 1,
+              maxLines: 3,
               softWrap: true,
               overflow: TextOverflow.ellipsis,
+            ),
+            title: Text(
+              note.timeStamp,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
             trailing: IconButton(
               onPressed: () async {
