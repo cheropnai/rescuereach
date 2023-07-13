@@ -18,7 +18,7 @@ void fetchUsers() async {
     print(userId);
     print('User phone number: $userPhoneNumber');
 
-    const url = 'http://192.168.1.15:65341/messages';
+    const url = 'http://10.50.30.154:65469/messages';
 
     try {
       LocationPermission permission = await Geolocator.requestPermission();

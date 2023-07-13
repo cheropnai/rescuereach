@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rescuereach/views/chat_list_view.dart';
 import 'package:rescuereach/components/reportbutton.dart';
+import 'package:rescuereach/views/report_views/notes_view.dart';
 
 import '../utils/config.dart';
 
@@ -161,31 +162,41 @@ class _WelcomeViewState extends State<WelcomeView> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      color: const Color.fromARGB(255, 191, 166, 233),
-                      child: const Stack(
-                        children: [
-                          Align(
-                            alignment: FractionalOffset.bottomCenter,
-                            child: Text(
-                              "Reports",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
+                    child: GestureDetector(
+                      onTap: () async{
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Notesview(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 50,
+                        color: const Color.fromARGB(255, 191, 166, 233),
+                        child: const Stack(
+                          children: [
+                            Align(
+                              alignment: FractionalOffset.bottomCenter,
+                              child: Text(
+                                "Reports",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Icon(
-                              Icons.bookmarks_sharp, // Use the "info" icon for "Resources"
-                              color: Colors.white, // Set the desired color for the icon
-                              size: 80,
+                            Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.bookmarks_sharp, // Use the "info" icon for "Resources"
+                                color: Colors.white, // Set the desired color for the icon
+                                size: 80,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
