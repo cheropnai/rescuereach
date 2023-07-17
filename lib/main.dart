@@ -1,10 +1,8 @@
 import 'package:rescuereach/helpers/loading/loading_screen.dart';
-import 'package:rescuereach/screens/login_screen.dart';
 import 'package:rescuereach/services/auth/bloc/auth_bloc.dart';
 import 'package:rescuereach/services/auth/bloc/auth_event.dart';
 import 'package:rescuereach/services/auth/bloc/auth_state.dart';
 import 'package:rescuereach/services/auth/firebase_auth_provider.dart';
-import 'package:rescuereach/views/chat_list_view.dart';
 import 'package:rescuereach/views/forgot_password_view.dart';
 import 'package:rescuereach/views/further_registration_view.dart';
 import 'package:rescuereach/views/login_view%20(2).dart';
@@ -12,13 +10,10 @@ import 'package:rescuereach/views/login_view.dart';
 import 'package:rescuereach/views/register_dummy.dart';
 import 'package:rescuereach/views/register_view.dart';
 import 'package:rescuereach/views/report_views/create_update_note_view.dart';
-import 'package:rescuereach/views/report_views/notes_list_view.dart';
-import 'package:rescuereach/views/report_views/notes_view.dart';
 import 'package:rescuereach/views/verify_email_view.dart';
 import 'package:rescuereach/views/welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 import 'constants/routes.dart';
 
